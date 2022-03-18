@@ -51,7 +51,15 @@ export class MovieView extends React.Component {
         </div>
         </div>
         <button class='justify-content-md-center btn btn-primary'  onClick={() => { onBackClick(null); }}>Back</button>
+        <Link to={`/directors/${movie.Director.Name}`}>
+  <Button variant="link">Director</Button>
+</Link>
+
+<Link to={`/genres/${movie.Genre.Name}`}>
+  <Button variant="link">Genre</Button>
+</Link>
       </div>
+      
     );
   }
 }

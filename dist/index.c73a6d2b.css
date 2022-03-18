@@ -54,22 +54,6 @@ form {
 .log-out {
   margin: 10px;
 }
-.card {
-  background-color: #0f0f0f;
-  padding: 5px;
-  margin: 5px;
-  box-shadow: 1px 1px 3px black, 2px 2px 3px black, 3px 3px 6px rgba(0, 0, 0, 0.712);
-}
-
-.btn {
-  box-shadow: 1px 1px 2px black, 2px 2px 3px #131212;
-  transition: 1s ease-in-out;
-}
-
-.btn:hover {
-  box-shadow: 1px 1px 2px black, 2px 2px 3px black, 3px 3px 4px rgba(0, 0, 0, 0.5);
-  transition: 0.5s ease-in-out;
-}
 .movie-view {
   color: bisque;
   font-family: "Dongle", sans-serif;
@@ -183,6 +167,7 @@ img {
   border-radius: 14px;
   box-shadow: 1px 1px 3px black, 2px 2px 3px black;
 }
+
 .MuVies {
   Color: bisque;
   background: linear-gradient(to left, #1d1d1d 10%, #1a1919 45%, #0a0a0a 75%);
