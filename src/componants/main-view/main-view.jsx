@@ -1,7 +1,6 @@
 //MAIN View
 import axios from 'axios';
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
@@ -68,7 +67,7 @@ export class MainView extends React.Component{
       }
       
       render() {
-        const { movies, user } = this.state;
+        const { movies, user, selectedMovie } = this.state;
     
         if (!user) return <Row>
           <Col>
@@ -77,11 +76,6 @@ export class MainView extends React.Component{
         </Row>
         if (movies.length === 0) return <div className="main-view" />;
       
-      if (!user) return <Row>
-        <Col>
-          <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
-        </Col>
-      </Row>
     return <div className="main-view">
     {selectedMovie
       ? (
