@@ -14,7 +14,9 @@ export class MainView extends React.Component{
       super();
       this.state = {
         movies: [],
-        user: null
+        user: null,
+        selectedMovie: null
+
       };
     }
     componentDidMount() {
@@ -41,6 +43,12 @@ export class MainView extends React.Component{
         });
       }
 
+      setSelectedMovie(newSelectedMovie) {
+        this.setState({
+          selectedMovie: newSelectedMovie
+        });
+      }
+
       onLoggedIn(authData) {
         console.log(authData);
         this.setState({
@@ -48,7 +56,7 @@ export class MainView extends React.Component{
         });
       
         localStorage.setItem('token', authData.token);
-        localStorage.setItem('user', authData.user.Userame);
+        localStorage.setItem('user', authData.user.UserName);
         this.getMovies(authData.token);
       }
       onLoggedOut() {
@@ -58,6 +66,7 @@ export class MainView extends React.Component{
           user: null
         });
       }
+      
       render() {
         const { movies, user } = this.state;
     
@@ -73,28 +82,18 @@ export class MainView extends React.Component{
           <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
         </Col>
       </Row>
-
-        return (
-
-          <Router>
-            <Row className="main-view justify-content-md-center">
-              <Routes exact path="/movies" render={() => {
-                return movies.map(m => (
-                  <Col md={3} key={m._id}>
-                    <MovieCard movie={m} />
-                  </Col>
-                ))
-              }} />
-              <Routes path="/movies/:movieId" render={({ match }) => {
-                return <Col md={8}>
-                  <MovieView movie={movies.find(m => m._id === match.params.movieId)} />
-                </Col>
-              }} />
-    
-            </Row>
-          </Router>
-        );
-      }
-    }
-
+    return (
+        <div className="main-view">
+        {/*If the state of `selectedMovie` is not null, that selected movie will be returned otherwise, all *movies will be returned*/}
+        {selectedMovie
+          ? <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }}/>
+          : movies.map(movie => (
+            <MovieCard key={movie._id} movie={movie} onMovieClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie) }}/>
+         ))
+        }
+      </div>
+    );
+      
+  }
+}
 export default MainView;
